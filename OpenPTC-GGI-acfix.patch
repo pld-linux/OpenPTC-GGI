@@ -1,0 +1,32 @@
+--- OpenPTC-GGI-0.5.0/configure.in.orig	Tue May  4 08:37:09 1999
++++ OpenPTC-GGI-0.5.0/configure.in	Sat Dec 21 02:25:31 2002
+@@ -41,18 +41,16 @@
+ 
+ dnl Check for HERMES
+ dnl ----
+-AC_CHECK_LIB(Hermes,Hermes_ConverterInstance,
++AC_CHECK_LIB(Hermes,Hermes_ConverterInstance,,
+ [
+-],[
+ AC_ERROR(HERMES has to be installed first. See INSTALL for more info)
+ ])
+ 
+ dnl Check for GGI
+ dnl ----
+ 
+-AC_CHECK_LIB(ggi, ggiOpen,
++AC_CHECK_LIB(ggi, ggiOpen,,
+ [
+-],[
+ AC_ERROR(libggi has to be installed first. See INSTALL for more info)
+ ])
+ 
+@@ -62,7 +60,7 @@
+ 
+ AC_CHECK_HEADERS(unistd.h)
+ 
+-AC_CHECK_HEADERS(Hermes/Hermes.h,
++AC_CHECK_HEADERS(Hermes/Hermes.h,,
+ [],
+ [
+ AC_ERROR(HERMES is required in order to build PTC. See INSTALL for more.)

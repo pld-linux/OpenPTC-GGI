@@ -1,0 +1,355 @@
+--- OpenPTC-GGI-0.5.0/source/GGI/Console.h.orig	Tue May  4 08:47:41 1999
++++ OpenPTC-GGI-0.5.0/source/GGI/Console.h	Sat Dec 21 09:44:00 2002
+@@ -12,7 +12,7 @@
+ #include <ptc.h>
+ #include <stdlib.h>
+ #include <string.h>
+-#include <fstream.h>
++#include <fstream>
+ #include <ggi/ggi.h>
+ #include <ggi/gii.h>
+ 
+--- OpenPTC-GGI-0.5.0/source/GGI/Console.cc.orig	Tue May  4 08:51:14 1999
++++ OpenPTC-GGI-0.5.0/source/GGI/Console.cc	Sat Dec 21 09:45:35 2002
+@@ -59,7 +59,7 @@
+ void Console::configure( const char file[] )
+ {
+     // open configuration file
+-    ifstream f( file, ios::in );
++    std::ifstream f( file, std::ios::in );
+     
+     // check file
+     if( !f ) {
+@@ -327,7 +327,7 @@
+ 
+     // Block until we get a key.
+     giiEventRead( l_ggi_input, &l_ggi_event, ( ggi_event_mask )
+-                                        emKeyPress | emKeyRepeat );
++                                        (emKeyPress | emKeyRepeat) );
+ 
+     int code = l_ggi_event.key.sym;
+     bool alt = l_ggi_event.key.modifiers & GII_MOD_ALT;
+@@ -922,7 +922,7 @@
+     return l_ptc_mode;
+ }
+ 
+-ggi_mode *Console::translate( const Mode &l_ptc_mode, int pages = 0 )
++ggi_mode *Console::translate( const Mode &l_ptc_mode, int pages /* = 0 */)
+ {
+     
+     ggi_mode    *l_ggi_mode = new ggi_mode;
+--- OpenPTC-GGI-0.5.0/source/Core/Palette.cc.orig	Mon May  3 20:06:57 1999
++++ OpenPTC-GGI-0.5.0/source/Core/Palette.cc	Sat Dec 21 09:50:18 2002
+@@ -116,7 +116,7 @@
+ {
+     // load palette data
+   //    memcpy(Hermes_PaletteGet(m_handle),data,1024);
+-    Hermes_PaletteSet(m_handle,data);
++    Hermes_PaletteSet(m_handle,(int32*)data);
+ }
+ 
+ 
+--- OpenPTC-GGI-0.5.0/demos/tunnel3d/Tunnel3D.cc.orig	Thu Apr  1 02:04:41 1999
++++ OpenPTC-GGI-0.5.0/demos/tunnel3d/Tunnel3D.cc	Sat Dec 21 09:58:50 2002
+@@ -11,8 +11,8 @@
+ #include "ptc.h"
+ #include <math.h>
+ #include <string.h>
+-#include <iostream.h>
+-#include <fstream.h>
++#include <iostream>
++#include <fstream>
+ #include "Tunnel3D.h"
+ #include "Calc.h"
+ 
+@@ -94,9 +94,9 @@
+   while(((int)tunneltex)&0xffff!=0)
+   tunneltex++;
+ 
+-  ifstream texfile("Tunnel3D.raw",ios::binary|ios::in);
+-  texfile.read(pal,768);
+-  texfile.read(tmp,65536);
++  std::ifstream texfile("Tunnel3D.raw",std::ios::binary|std::ios::in);
++  texfile.read((char*)pal,768);
++  texfile.read((char*)tmp,65536);
+   texfile.close();
+ 
+   // Generate lookup table for lighting (65 because of possible inaccuracies)
+@@ -319,7 +319,7 @@
+ }
+ 
+ 
+-void main()
++int main()
+ {
+ 
+   try {
+@@ -370,4 +370,5 @@
+   { error.report();
+ 
+   }
++  return 0;
+ }
+--- OpenPTC-GGI-0.5.0/examples/image/Image.cc.orig	Sat Mar 20 23:11:27 1999
++++ OpenPTC-GGI-0.5.0/examples/image/Image.cc	Sat Dec 21 10:03:27 2002
+@@ -6,13 +6,13 @@
+ 
+ // include files
+ #include "ptc.h"
+-#include <fstream.h>
++#include <fstream>
+ 
+ 
+ void load(Surface &surface,char filename[])
+ {
+     // open image file
+-    ifstream is(filename,ios::in|ios::binary|ios::nocreate);
++    std::ifstream is(filename,std::ios::in|std::ios::binary);
+ 
+     // check image file stream
+     if (!is) throw Error("could not load image");
+--- OpenPTC-GGI-0.5.0/examples/info/Info.cc.orig	Sat Mar 20 23:12:18 1999
++++ OpenPTC-GGI-0.5.0/examples/info/Info.cc	Sat Dec 21 10:04:07 2002
+@@ -34,7 +34,7 @@
+ }
+ 
+ 
+-void main()
++int main()
+ {
+     try
+     {
+@@ -68,5 +68,6 @@
+         // report error
+         error.report();
+     }
++    return 0;
+ }
+ 
+--- OpenPTC-GGI-0.5.0/examples/modes/Modes.cc.orig	Sat Mar 20 23:14:23 1999
++++ OpenPTC-GGI-0.5.0/examples/modes/Modes.cc	Sat Dec 21 10:05:07 2002
+@@ -47,7 +47,7 @@
+ }
+ 
+ 
+-void main()
++int main()
+ {
+     try
+     {
+@@ -87,5 +87,6 @@
+         // report error
+         error.report();
+     }
++    return 0;
+ }
+ 
+--- OpenPTC-GGI-0.5.0/examples/pixel/Pixel.cc.orig	Sat Mar 20 23:16:04 1999
++++ OpenPTC-GGI-0.5.0/examples/pixel/Pixel.cc	Sat Dec 21 10:07:02 2002
+@@ -24,7 +24,7 @@
+ }
+ 
+ 
+-void main()
++int main()
+ {
+     try
+     {
+@@ -57,4 +57,5 @@
+         // report error
+         error.report();
+     }
++    return 0;
+ }
+--- OpenPTC-GGI-0.5.0/examples/save/Save.cc.orig	Sat Mar 20 23:17:22 1999
++++ OpenPTC-GGI-0.5.0/examples/save/Save.cc	Sat Dec 21 10:08:29 2002
+@@ -7,13 +7,13 @@
+ // include files
+ #include "ptc.h"
+ #include <math.h>
+-#include <fstream.h>
++#include <fstream>
+ 
+ 
+ void save(Surface &surface,char filename[])
+ {
+     // open image file for writing
+-    ofstream os(filename,ios::out|ios::binary);
++    std::ofstream os(filename,std::ios::out|std::ios::binary);
+ 
+     // check image file stream
+     if (!os) throw Error("could not open image file for writing");
+@@ -37,7 +37,7 @@
+     header[16] = 24;
+ 
+     // write tga header
+-    os.write(header,18);
++    os.write((const char*)header,18);
+ 
+     // calculate size of image pixels
+     const int size = width * height * 3;
+--- OpenPTC-GGI-0.5.0/examples/stretch/Stretch.cc.orig	Sun Mar 21 00:07:08 1999
++++ OpenPTC-GGI-0.5.0/examples/stretch/Stretch.cc	Sat Dec 21 10:09:52 2002
+@@ -7,13 +7,13 @@
+ // include files
+ #include "ptc.h"
+ #include <math.h>
+-#include <fstream.h>
++#include <fstream>
+ 
+ 
+ void load(Surface &surface,char filename[])
+ {
+     // open image file
+-    ifstream is(filename,ios::in|ios::binary|ios::nocreate);
++    std::ifstream is(filename,std::ios::in|std::ios::binary);
+ 
+     // check image file stream
+     if (!is) throw Error("could not load image");
+--- OpenPTC-GGI-0.5.0/demos/fire/Fire.cc.orig	Sun Mar 21 00:46:48 1999
++++ OpenPTC-GGI-0.5.0/demos/fire/Fire.cc	Sat Dec 21 10:10:48 2002
+@@ -68,7 +68,7 @@
+ }
+ 
+ 
+-void main()
++int main()
+ {
+     try
+     {
+--- OpenPTC-GGI-0.5.0/demos/flower/Flower.cc.orig	Sun Mar 21 00:47:26 1999
++++ OpenPTC-GGI-0.5.0/demos/flower/Flower.cc	Sat Dec 21 10:11:24 2002
+@@ -93,7 +93,7 @@
+ }
+ 
+ 
+-void main()
++int main()
+ {
+     try
+     {
+--- OpenPTC-GGI-0.5.0/demos/land/Land.cc.orig	Sun Mar 21 01:06:36 1999
++++ OpenPTC-GGI-0.5.0/demos/land/Land.cc	Sat Dec 21 10:13:06 2002
+@@ -256,10 +256,11 @@
+ //
+ void View(int x0,int y0,int angle, int height, int32 *surface_buffer)
+ {
++ int d;
+  //
+  // Initialize last-y and last-color arrays
+  //
+- for ( int d=0; d<SCREENWIDTH; d++ )
++ for ( d=0; d<SCREENWIDTH; d++ )
+  {
+   lasty[d]=SCREENHEIGHT;
+   lastc[d]=-1;
+--- OpenPTC-GGI-0.5.0/demos/lights/Lights.cc.orig	Sun Mar 21 00:48:15 1999
++++ OpenPTC-GGI-0.5.0/demos/lights/Lights.cc	Sat Dec 21 10:13:49 2002
+@@ -22,7 +22,7 @@
+ }
+ 
+ 
+-void main()
++int main()
+ {
+     try
+     {
+--- OpenPTC-GGI-0.5.0/demos/mojo/Mojo.cc.orig	Sun Mar 21 00:47:37 1999
++++ OpenPTC-GGI-0.5.0/demos/mojo/Mojo.cc	Sat Dec 21 10:15:57 2002
+@@ -20,7 +20,7 @@
+ #include "ptc.h"
+ #include <math.h>
+ #include <stdio.h>
+-#include <fstream.h>
++#include <fstream>
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -316,7 +316,7 @@
+ 	/////////////////
+ 	// load Mojo.raw
+ 
+-    ifstream file("Mojo.raw");
++    std::ifstream file("Mojo.raw");
+     file.read((char*)MaskMap,320*200);
+     file.close();
+ 
+@@ -456,7 +456,7 @@
+ }
+ 
+ 
+-void main()
++int main()
+ {
+     try
+     {
+@@ -486,4 +486,5 @@
+         // report error
+         error.report();
+     }
++    return 0;
+ }
+--- OpenPTC-GGI-0.5.0/demos/tunnel/Tunnel.cc.orig	Sun Mar 21 00:47:18 1999
++++ OpenPTC-GGI-0.5.0/demos/tunnel/Tunnel.cc	Sat Dec 21 10:16:41 2002
+@@ -103,7 +103,7 @@
+ };
+ 
+ 
+-void main()
++int main()
+ {
+     try
+     {
+@@ -153,4 +153,5 @@
+         // report error
+         error.report();
+     }
++    return 0;
+ }
+--- OpenPTC-GGI-0.5.0/tests/Console.cc.orig	Thu Feb 18 16:08:52 1999
++++ OpenPTC-GGI-0.5.0/tests/Console.cc	Sat Dec 21 10:17:48 2002
+@@ -10,7 +10,7 @@
+ #include <string.h>
+ 
+ 
+-void main()
++int main()
+ {
+     try
+     {
+@@ -169,4 +169,5 @@
+         // report error
+         error.report();
+     }
++    return 0;
+ }
+--- OpenPTC-GGI-0.5.0/tests/Link.cc.orig	Thu Feb 18 16:07:46 1999
++++ OpenPTC-GGI-0.5.0/tests/Link.cc	Sat Dec 21 10:18:50 2002
+@@ -603,8 +603,9 @@
+ }
+ 
+ 
+-void main()
++int main()
+ {
+     // this program does nothing but test linkage with OpenPTC
+     printf("congratulations you passed the link test\n");
++    return 0;
+ }
+--- OpenPTC-GGI-0.5.0/tests/Timer.cc.orig	Thu Feb 18 16:28:08 1999
++++ OpenPTC-GGI-0.5.0/tests/Timer.cc	Sat Dec 21 10:19:11 2002
+@@ -10,7 +10,7 @@
+ #include <stdio.h>
+ 
+ 
+-void main()
++int main()
+ {
+     try
+     {
+@@ -84,4 +84,5 @@
+         // report error
+         error.report();
+     }
++    return 0;
+ }
