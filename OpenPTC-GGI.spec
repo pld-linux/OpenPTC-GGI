@@ -6,6 +6,7 @@ Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://www.gaffer.org/ptc/download/distributions/Unix/%{name}-%{version}.tgz
+# Source0-md5:	99a195653435f6749f4d0faec96b51c2
 Patch0:		%{name}-acfix.patch
 Patch1:		%{name}-gcc3.patch
 Patch2:		%{name}-include.patch
