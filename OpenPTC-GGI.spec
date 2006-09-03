@@ -51,7 +51,7 @@ OpenPTC jest dostêpne dla X11, GGI, Win32, DOS i JAVA.
 Summary:	OpenPTC development package
 Summary(pl):	Pakiet programistyczny dla OpenPTC
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Provides:	OpenPTC-devel
 Obsoletes:	OpenPTC-x11-devel
 
@@ -65,7 +65,7 @@ Pakiet programistyczny dla OpenPTC.
 Summary:	OpenPTC static libraries
 Summary(pl):	Biblioteki statyczne dla OpenPTC
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 Provides:	OpenPTC-static
 Obsoletes:	OpenPTC-x11-static
 
@@ -79,14 +79,14 @@ Biblioteki statyczne dla OpenPTC.
 Summary:	OpenPTC demos and examples
 Summary(pl):	Programy demonstracyjne i przyk³adowe do OpenPTC
 Group:		Applications/Graphics
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description demos
 OpenPTC demos and examples (executables and sources).
 
 %description demos -l pl
-Programy demonstracyjne i przyk³adowe do OpenPTC (pliki wykonywalne
-i ¼ród³a).
+Programy demonstracyjne i przyk³adowe do OpenPTC (pliki wykonywalne i
+¼ród³a).
 
 %prep
 %setup -q
