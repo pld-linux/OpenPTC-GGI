@@ -1,5 +1,5 @@
 Summary:	OpenPTC for GGI
-Summary(pl.UTF-8):   OpenPTC dla GGI
+Summary(pl.UTF-8):	OpenPTC dla GGI
 Name:		OpenPTC-GGI
 Version:	0.5.0
 Release:	1
@@ -49,7 +49,7 @@ OpenPTC jest dostępne dla X11, GGI, Win32, DOS i JAVA.
 
 %package devel
 Summary:	OpenPTC development package
-Summary(pl.UTF-8):   Pakiet programistyczny dla OpenPTC
+Summary(pl.UTF-8):	Pakiet programistyczny dla OpenPTC
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Provides:	OpenPTC-devel
@@ -63,7 +63,7 @@ Pakiet programistyczny dla OpenPTC.
 
 %package static
 Summary:	OpenPTC static libraries
-Summary(pl.UTF-8):   Biblioteki statyczne dla OpenPTC
+Summary(pl.UTF-8):	Biblioteki statyczne dla OpenPTC
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Provides:	OpenPTC-static
@@ -77,7 +77,7 @@ Biblioteki statyczne dla OpenPTC.
 
 %package demos
 Summary:	OpenPTC demos and examples
-Summary(pl.UTF-8):   Programy demonstracyjne i przykładowe do OpenPTC
+Summary(pl.UTF-8):	Programy demonstracyjne i przykładowe do OpenPTC
 Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
 
