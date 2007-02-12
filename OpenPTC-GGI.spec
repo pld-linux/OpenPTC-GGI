@@ -1,5 +1,5 @@
 Summary:	OpenPTC for GGI
-Summary(pl):	OpenPTC dla GGI
+Summary(pl.UTF-8):   OpenPTC dla GGI
 Name:		OpenPTC-GGI
 Version:	0.5.0
 Release:	1
@@ -39,17 +39,17 @@ Work for other platforms is in progress. All implementations of PTC
 come with full source code and may be used free of charge even in
 commercial projects.
 
-%description -l pl
-Prometheus Truecolour (OpenPTC) jest trzeci± generacj± standardu dla
-wieloplatformowej niskopoziomowej grafiki. Umo¿liwia operacje na
-frame-bufferze oraz konwersj± (przy pomocy biblioteki Hermes) na ró¿ne
+%description -l pl.UTF-8
+Prometheus Truecolour (OpenPTC) jest trzeciÄ… generacjÄ… standardu dla
+wieloplatformowej niskopoziomowej grafiki. UmoÅ¼liwia operacje na
+frame-bufferze oraz konwersjÄ… (przy pomocy biblioteki Hermes) na rÃ³Å¼ne
 tryby graficzne.
 
-OpenPTC jest dostêpne dla X11, GGI, Win32, DOS i JAVA.
+OpenPTC jest dostÄ™pne dla X11, GGI, Win32, DOS i JAVA.
 
 %package devel
 Summary:	OpenPTC development package
-Summary(pl):	Pakiet programistyczny dla OpenPTC
+Summary(pl.UTF-8):   Pakiet programistyczny dla OpenPTC
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Provides:	OpenPTC-devel
@@ -58,12 +58,12 @@ Obsoletes:	OpenPTC-x11-devel
 %description devel
 OpenPTC development package.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pakiet programistyczny dla OpenPTC.
 
 %package static
 Summary:	OpenPTC static libraries
-Summary(pl):	Biblioteki statyczne dla OpenPTC
+Summary(pl.UTF-8):   Biblioteki statyczne dla OpenPTC
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Provides:	OpenPTC-static
@@ -72,21 +72,21 @@ Obsoletes:	OpenPTC-x11-static
 %description static
 OpenPTC static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne dla OpenPTC.
 
 %package demos
 Summary:	OpenPTC demos and examples
-Summary(pl):	Programy demonstracyjne i przyk³adowe do OpenPTC
+Summary(pl.UTF-8):   Programy demonstracyjne i przykÅ‚adowe do OpenPTC
 Group:		Applications/Graphics
 Requires:	%{name} = %{version}-%{release}
 
 %description demos
 OpenPTC demos and examples (executables and sources).
 
-%description demos -l pl
-Programy demonstracyjne i przyk³adowe do OpenPTC (pliki wykonywalne i
-¼ród³a).
+%description demos -l pl.UTF-8
+Programy demonstracyjne i przykÅ‚adowe do OpenPTC (pliki wykonywalne i
+ÅºrÃ³dÅ‚a).
 
 %prep
 %setup -q
